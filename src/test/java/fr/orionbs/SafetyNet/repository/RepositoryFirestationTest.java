@@ -5,9 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class RepositoryFirestationTest {
+import java.util.List;
 
+import static  org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
+class FirestationRepositoryTest {
+
+    @Autowired
+    private FirestationRepository firestationRepository;
 
     @Test
     void deleteByAddressAndStation() {
@@ -16,12 +22,13 @@ class RepositoryFirestationTest {
     @Test
     void testFindByStationShouldReturnList() {
         // GIVEN
-        Firestation firestation = new Firestation();
-        firestation.setAddress("testingg");
-        firestation.setStation(4);
 
         // WHEN
+        List<Firestation> byStation = firestationRepository.findByStation(4);
 
+        // THEN
+        assertThat(byStation).isNotEmpty();
+        assertThat(byStation).hasSize(2);
 
     }
 

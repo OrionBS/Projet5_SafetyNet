@@ -129,13 +129,7 @@ public class FirestationServiceImpl implements FirestationService {
     @Override
     public Boolean getFirestation(String address, int station) {
         Firestation firestation = firestationRepository.findByAddressAndStation(address, station);
-        if (firestation == null) {
-            throw new MissingParamException("Aucune station avec cette adresse: "+address+" et ce numéro: "+station+".");
-        }
-        if (firestation == null) {
-            return true;
-        }
-        return false;
+        return firestation == null;
     }
 
     @Override
