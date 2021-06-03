@@ -5,6 +5,7 @@ import fr.orionbs.SafetyNet.model.*;
 import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.repositoryTest.PersonRepository;
 import fr.orionbs.SafetyNet.service.PersonService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class PersonServiceImpl implements PersonService {
@@ -28,11 +30,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person addPerson(Person person) {
+        log.info("Called Adding Person Service");
         return personRepository.save(person);
     }
 
     @Override
     public Person updatePerson(String firstName,String lastName,Person person) {
+        log.info("Called Updating Person Service");
         Person personSelected = personRepository.findByFirstNameAndLastName(firstName, lastName);
         personSelected.setAddress(person.getAddress());
         personSelected.setEmail(person.getEmail());
@@ -44,26 +48,31 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePerson(String firstName, String lastName) {
+        log.info("Called Deleting Person Service");
         personRepository.deleteByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
     public Person findByFirstNameAndLastName(String firstName, String lastName) {
+        log.info("Called Getting Person Service");
         return personRepository.findByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
     public List<Person> save(Collection<Person> persons) {
+        log.info("Called Multiple Adding Person Service");
         return personRepository.saveAll(persons);
     }
 
     @Override
     public List<Person> findAll() {
+        log.info("Called Multiple Getting Person Service");
         return personRepository.findAll();
     }
 
     @Override
     public List<CommunityEmail> getEmailFilterByTown(String city) {
+        log.info("Called Getting Email Filter By Town Person Service");
         List<CommunityEmail> emails = new ArrayList<>();
         List<Person> persons = personRepository.findByCity(city);
         if (CollectionUtils.isEmpty(persons)) {
@@ -77,6 +86,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonInfo> getPersonInfo(String firstName, String lastName) {
+        log.info("Called Getting Infos Person Service");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<PersonInfo> personInfos = new ArrayList<>();
 
@@ -103,6 +113,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<ChildAlert> getChildByAddress(String address) {
+        log.info("Called Getting Child By Address Person Service");
         List<ChildAlert> childs = new ArrayList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<Person> persons = personRepository.findByAddress(address);
@@ -131,6 +142,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Boolean getPerson(String firstName, String lastName) {
+        log.info("Called Getting IsEmpty Person Service");
         Person person = personRepository.findByFirstNameAndLastName(firstName,lastName);
         if (person == null) {
             return true;

@@ -6,6 +6,7 @@ import fr.orionbs.SafetyNet.repositoryTest.FirestationRepository;
 import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.repositoryTest.PersonRepository;
 import fr.orionbs.SafetyNet.service.FirestationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class FirestationServiceImpl implements FirestationService {
@@ -31,11 +33,13 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public Firestation addFirestation(Firestation firestation) {
+        log.info("Called Adding Firestation Service");
         return firestationRepository.save(firestation);
     }
 
     @Override
     public Firestation updateFirestation(String address,Firestation firestation) {
+        log.info("Called Updating Firestation Service");
         Firestation firestationSelected = firestationRepository.findByAddress(address);
         if (firestationSelected == null) {
             throw new MissingParamException("Aucune station ne correspond à cette adresse: "+address);
@@ -46,16 +50,19 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<Firestation> save(Collection<Firestation> firestations) {
+        log.info("Called Multiple Adding Firestation Service");
         return firestationRepository.saveAll(firestations);
     }
 
     @Override
     public List<Firestation> findAll() {
+        log.info("Called Multiple Getting Firestation Service");
         return firestationRepository.findAll();
     }
 
     @Override
     public FirestationCoverage getPersonsByCoverage(int station) {
+        log.info("Called Getting Persons By Coverage Firestation Service");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         FirestationCoverage personsAndCount = new FirestationCoverage();
         List<Person> personsCovered = new ArrayList<>();
@@ -84,6 +91,7 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<PhoneAlert> getPhoneByCoverage(int station) {
+        log.info("Called Getting Phone By Coverage Firestation Service");
         List<PhoneAlert> phonesCovered = new ArrayList<>();
         List<Firestation> firestations = firestationRepository.findByStation(station);
         if (CollectionUtils.isEmpty(firestations)) {
@@ -100,6 +108,7 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<Fire> getFirestationAndPersonsMedicalRecord(String address) {
+        log.info("Called Getting Firestation And Persons MedicalRecord Firestation Service");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<Fire> firestationAndPersonsMedicalRecord = new ArrayList<>();
         Firestation firestation = firestationRepository.findByAddress(address);
@@ -128,12 +137,14 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public Boolean getFirestation(String address, int station) {
+        log.info("Called Getting Firestation Service");
         Firestation firestation = firestationRepository.findByAddressAndStation(address, station);
         return firestation == null;
     }
 
     @Override
     public List<FloodStation> getFloodStation(List<Integer> stations) {
+        log.info("Called Getting FloodStation Firestation Service");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<FloodStation> floodStations = new ArrayList<>();
         stations.forEach(station -> {
@@ -164,11 +175,13 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public void deleteFirestationByAddress(String address) {
+        log.info("Called Deleting By Address Firestation Service");
         firestationRepository.deleteByAddress(address);
     }
 
     @Override
     public void deleteFirestationByStation(String station) {
+        log.info("Called Deleting By Station Firestation Service");
         firestationRepository.deleteByStation(station);
     }
 }
