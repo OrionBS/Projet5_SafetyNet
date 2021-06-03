@@ -89,6 +89,7 @@
 					<excludes>
 						<exclude>**/model/*.class</exclude>
 						<exclude>**/exception/*.class</exclude>
+						<exclude>**/SafetyNetApplication.class</exclude>
 					</excludes>
 				</configuration>
 				<executions>
