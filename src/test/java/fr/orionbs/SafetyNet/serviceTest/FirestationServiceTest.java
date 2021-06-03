@@ -1,2 +1,4 @@
-package fr.orionbs.SafetyNet.serviceTest;public class FirestationServiceTest {
+package fr.orionbs.SafetyNet.serviceTest;
+
+public class FirestationServiceTest {
 }
