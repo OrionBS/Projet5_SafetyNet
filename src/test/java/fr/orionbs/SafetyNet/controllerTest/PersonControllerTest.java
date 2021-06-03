@@ -10,13 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.MultiValueMapAdapter;
-
-import java.util.HashMap;
-
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -40,8 +35,24 @@ public class PersonControllerTest {
         mockMvc.perform(post("/person").accept(MediaType.APPLICATION_JSON)
                 .content(asJsonString(person))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").exists());
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void testUpdatePerson() throws Exception {
+
+        Person person = new Person(null, "test1", "Test1", "testAddress", "testCity", 1, "testPhone", "testMail");
+        mockMvc.perform(post("/person").accept(MediaType.APPLICATION_JSON)
+                .content(asJsonString(person))
+                .contentType(MediaType.APPLICATION_JSON));
+        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("firstName","test1");
+        listParams.add("lastName","Test1");
+        person.setAddress("testAddressModified");
+        mockMvc.perform(put("/person")
+                .params(listParams)
+                .content(asJsonString(person))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -54,9 +65,9 @@ public class PersonControllerTest {
                 .andExpect(status().isAccepted());
     }
 
-    public static String asJsonString(final Person person) {
+    public static String asJsonString(final Object object) {
         try {
-            return new ObjectMapper().writeValueAsString(person);
+            return new ObjectMapper().writeValueAsString(object);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

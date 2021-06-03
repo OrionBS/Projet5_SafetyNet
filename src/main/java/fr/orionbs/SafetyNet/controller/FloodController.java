@@ -19,7 +19,7 @@ public class FloodController {
     FirestationService firestationService;
 
     @GetMapping(path = "/flood/stations")
-    List<FloodStation> FirestationCoverage(@RequestParam List<Integer> stations) {
+    List<FloodStation> getFirestationCoverage(@RequestParam List<Integer> stations) {
         return firestationService.getFloodStation(stations);
     }
 }

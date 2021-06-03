@@ -2,8 +2,8 @@ package fr.orionbs.SafetyNet.service.impl;
 
 import fr.orionbs.SafetyNet.exception.MissingParamException;
 import fr.orionbs.SafetyNet.model.*;
-import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
-import fr.orionbs.SafetyNet.repository.PersonRepository;
+import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
+import fr.orionbs.SafetyNet.repositoryTest.PersonRepository;
 import fr.orionbs.SafetyNet.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

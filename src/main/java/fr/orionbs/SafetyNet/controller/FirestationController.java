@@ -43,14 +43,4 @@ public class FirestationController {
             return ResponseEntity.notFound().build();
         }
     }
-    public ResponseEntity<Void> deleteFirestationByStation(@RequestParam String station) {
-        try {
-            firestationService.deleteFirestationByStation(station);
-            return ResponseEntity.accepted().build();
-        } catch (ConfigDataResourceNotFoundException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.notFound().build();
-        }
-
-    }
 }

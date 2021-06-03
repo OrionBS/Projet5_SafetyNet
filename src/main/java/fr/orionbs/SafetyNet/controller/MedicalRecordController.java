@@ -21,6 +21,7 @@ public class MedicalRecordController {
     public List<MedicalRecord> getMedicalRecords() {
         return medicalRecordService.findAll();
     }
+
     @PostMapping(path = "/medicalRecord")
     public MedicalRecord addMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         return medicalRecordService.addMedicalRecord(medicalRecord);

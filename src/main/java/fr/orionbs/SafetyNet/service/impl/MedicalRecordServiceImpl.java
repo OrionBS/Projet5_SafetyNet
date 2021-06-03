@@ -1,7 +1,7 @@
 package fr.orionbs.SafetyNet.service.impl;
 
 import fr.orionbs.SafetyNet.model.MedicalRecord;
-import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
+import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

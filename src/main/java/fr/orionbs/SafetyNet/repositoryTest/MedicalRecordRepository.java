@@ -1,4 +1,4 @@
-package fr.orionbs.SafetyNet.repository;
+package fr.orionbs.SafetyNet.repositoryTest;
 
 import fr.orionbs.SafetyNet.model.MedicalRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
