@@ -1,7 +1,7 @@
 package fr.orionbs.SafetyNet.service.impl;
 
 import fr.orionbs.SafetyNet.model.MedicalRecord;
-import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
+import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.service.MedicalRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

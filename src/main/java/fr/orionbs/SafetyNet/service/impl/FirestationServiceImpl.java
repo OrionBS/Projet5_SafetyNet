@@ -2,9 +2,9 @@ package fr.orionbs.SafetyNet.service.impl;
 
 import fr.orionbs.SafetyNet.exception.MissingParamException;
 import fr.orionbs.SafetyNet.model.*;
-import fr.orionbs.SafetyNet.repositoryTest.FirestationRepository;
-import fr.orionbs.SafetyNet.repositoryTest.MedicalRecordRepository;
-import fr.orionbs.SafetyNet.repositoryTest.PersonRepository;
+import fr.orionbs.SafetyNet.repository.FirestationRepository;
+import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
+import fr.orionbs.SafetyNet.repository.PersonRepository;
 import fr.orionbs.SafetyNet.service.FirestationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,11 +177,5 @@ public class FirestationServiceImpl implements FirestationService {
     public void deleteFirestationByAddress(String address) {
         log.info("Called Deleting By Address Firestation Service");
         firestationRepository.deleteByAddress(address);
-    }
-
-    @Override
-    public void deleteFirestationByStation(String station) {
-        log.info("Called Deleting By Station Firestation Service");
-        firestationRepository.deleteByStation(station);
     }
 }

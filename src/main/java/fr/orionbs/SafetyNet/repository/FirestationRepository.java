@@ -1,4 +1,4 @@
-package fr.orionbs.SafetyNet.repositoryTest;
+package fr.orionbs.SafetyNet.repository;
 
 import fr.orionbs.SafetyNet.model.Firestation;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +16,4 @@ public interface FirestationRepository extends JpaRepository<Firestation, Intege
     Firestation findByAddressAndStation(String address, int station);
 
     void deleteByAddress(String address);
-
-    void deleteByStation(String station);
 }

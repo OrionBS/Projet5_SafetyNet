@@ -1,4 +1,4 @@
-package fr.orionbs.SafetyNet.repositoryTest;
+package fr.orionbs.SafetyNet.repository;
 
 import fr.orionbs.SafetyNet.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;

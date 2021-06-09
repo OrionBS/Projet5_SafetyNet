@@ -26,6 +26,4 @@ public interface FirestationService {
     List<FloodStation> getFloodStation(List<Integer> stations);
 
     void deleteFirestationByAddress(String address);
-
-    void deleteFirestationByStation(String station);
 }
