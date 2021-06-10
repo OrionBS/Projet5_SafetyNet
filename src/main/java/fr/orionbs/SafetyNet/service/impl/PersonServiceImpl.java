@@ -30,13 +30,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person addPerson(Person person) {
-        log.info("Called Adding Person Service");
+        log.info("Service Person : "+person.toString()+" adding.");
         return personRepository.save(person);
     }
 
     @Override
     public Person updatePerson(String firstName,String lastName,Person person) {
-        log.info("Called Updating Person Service");
+        log.info("Service Person : firtname: "+firstName+" lastname: "+lastName+" updating.");
         Person personSelected = personRepository.findByFirstNameAndLastName(firstName, lastName);
         personSelected.setAddress(person.getAddress());
         personSelected.setEmail(person.getEmail());
@@ -48,31 +48,31 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePerson(String firstName, String lastName) {
-        log.info("Called Deleting Person Service");
+        log.info("Service Person : firstname: "+firstName+" lastname: "+lastName+" deleting.");
         personRepository.deleteByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
     public Person findByFirstNameAndLastName(String firstName, String lastName) {
-        log.info("Called Getting Person Service");
+        log.info("Service Person : firstname: "+firstName+" lastname: "+lastName+" finding.");
         return personRepository.findByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
     public List<Person> save(Collection<Person> persons) {
-        log.info("Called Multiple Adding Person Service");
+        log.info("Service Person : Person's list adding.");
         return personRepository.saveAll(persons);
     }
 
     @Override
     public List<Person> findAll() {
-        log.info("Called Multiple Getting Person Service");
+        log.info("Service Person : All Person's List finding.");
         return personRepository.findAll();
     }
 
     @Override
     public List<CommunityEmail> getEmailFilterByTown(String city) {
-        log.info("Called Getting Email Filter By Town Person Service");
+        log.info("Service Person : city: "+city+" all email finding.");
         List<CommunityEmail> emails = new ArrayList<>();
         List<Person> persons = personRepository.findByCity(city);
         if (CollectionUtils.isEmpty(persons)) {
@@ -86,7 +86,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonInfo> getPersonInfo(String firstName, String lastName) {
-        log.info("Called Getting Infos Person Service");
+        log.info("Service Person : firstname: "+firstName+" lastname: "+lastName+" infos finding.");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<PersonInfo> personInfos = new ArrayList<>();
 
@@ -113,7 +113,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<ChildAlert> getChildByAddress(String address) {
-        log.info("Called Getting Child By Address Person Service");
+        log.info("Service Person : address: "+address+" child finding.");
         List<ChildAlert> childs = new ArrayList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<Person> persons = personRepository.findByAddress(address);
@@ -142,7 +142,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Boolean getPerson(String firstName, String lastName) {
-        log.info("Called Getting IsEmpty Person Service");
+        log.info("Sercice Person : firstname: "+firstName+" lastname: "+lastName+" person getting.");
         Person person = personRepository.findByFirstNameAndLastName(firstName,lastName);
         if (person == null) {
             return true;

@@ -21,13 +21,13 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
-        log.info("Called Adding MedicalRecord Service");
+        log.info("Service MedicalRecord : "+medicalRecord.toString()+" adding.");
         return medicalRecordRepository.save(medicalRecord);
     }
 
     @Override
     public MedicalRecord updateMedicalRecord(String firstName, String lastName,MedicalRecord medicalRecord) {
-        log.info("Called Updating MedicalRecord Service");
+        log.info("Service MedicalRecord : firstname: "+firstName+" lastname: "+lastName+" updating.");
         MedicalRecord medicalRecordSelected = medicalRecordRepository.findByFirstNameAndLastName(firstName,lastName);
         medicalRecordSelected.setBirthdate(medicalRecord.getBirthdate());
         medicalRecordSelected.setMedications(medicalRecord.getMedications());
@@ -37,25 +37,25 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public void deleteMedicalRecord(String firstName, String lastName) {
-        log.info("Called Deleting MedicalRecord Service");
+        log.info("Service MedicalRecord : firstname: "+firstName+" lastname: "+lastName+" deleting.");
         medicalRecordRepository.deleteByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
     public List<MedicalRecord> save(Collection<MedicalRecord> medicalRecords) {
-        log.info("Called Multiple Adding MedicalRecord Service");
+        log.info("Service MedicalRecord : MedicalRecord's list adding.");
         return medicalRecordRepository.saveAll(medicalRecords);
     }
 
     @Override
     public List<MedicalRecord> findAll() {
-        log.info("Called Multiple Getting MedicalRecord Service");
+        log.info("Service MedicalRecord : All MedicalRecord's list finding.");
         return medicalRecordRepository.findAll();
     }
 
     @Override
     public Boolean getMedicalRecord(String firstName, String lastName) {
-        log.info("Called Getting MedicalRecord Service");
+        log.info("Service MedicalRecord : firstname: "+firstName+" lastname: "+lastName+" finding.");
         MedicalRecord medicalRecord = medicalRecordRepository.findByFirstNameAndLastName(firstName,lastName);
         if (medicalRecord == null) {
             return true;

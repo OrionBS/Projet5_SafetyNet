@@ -33,13 +33,13 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public Firestation addFirestation(Firestation firestation) {
-        log.info("Called Adding Firestation Service");
+        log.info("Service Firestation : new address: "+firestation.getAddress()+" new station: "+firestation.getStation()+" adding.");
         return firestationRepository.save(firestation);
     }
 
     @Override
     public Firestation updateFirestation(String address,Firestation firestation) {
-        log.info("Called Updating Firestation Service");
+        log.info("Service Firestation : address: "+firestation.getAddress()+" station: "+firestation.getStation()+" updating.");
         Firestation firestationSelected = firestationRepository.findByAddress(address);
         if (firestationSelected == null) {
             throw new MissingParamException("Aucune station ne correspond à cette adresse: "+address);
@@ -50,19 +50,19 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<Firestation> save(Collection<Firestation> firestations) {
-        log.info("Called Multiple Adding Firestation Service");
+        log.info("Service Firestation : Firestation's list adding.");
         return firestationRepository.saveAll(firestations);
     }
 
     @Override
     public List<Firestation> findAll() {
-        log.info("Called Multiple Getting Firestation Service");
+        log.info("Service Firestation : All Firestation's list finding.");
         return firestationRepository.findAll();
     }
 
     @Override
     public FirestationCoverage getPersonsByCoverage(int station) {
-        log.info("Called Getting Persons By Coverage Firestation Service");
+        log.info("Service Firestation : station: "+station+" getting persons covered.");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         FirestationCoverage personsAndCount = new FirestationCoverage();
         List<Person> personsCovered = new ArrayList<>();
@@ -91,7 +91,7 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<PhoneAlert> getPhoneByCoverage(int station) {
-        log.info("Called Getting Phone By Coverage Firestation Service");
+        log.info("Service Firestation : station: "+station+" getting persons phone covered.");
         List<PhoneAlert> phonesCovered = new ArrayList<>();
         List<Firestation> firestations = firestationRepository.findByStation(station);
         if (CollectionUtils.isEmpty(firestations)) {
@@ -108,7 +108,7 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public List<Fire> getFirestationAndPersonsMedicalRecord(String address) {
-        log.info("Called Getting Firestation And Persons MedicalRecord Firestation Service");
+        log.info("Service Firestation : address: "+address+" getting firestation and persons medicalRecord by address.");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<Fire> firestationAndPersonsMedicalRecord = new ArrayList<>();
         Firestation firestation = firestationRepository.findByAddress(address);
@@ -137,14 +137,14 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public Boolean getFirestation(String address, int station) {
-        log.info("Called Getting Firestation Service");
+        log.info("Service Firestation : address: "+address+" station: "+station+" getting firestation.");
         Firestation firestation = firestationRepository.findByAddressAndStation(address, station);
         return firestation == null;
     }
 
     @Override
     public List<FloodStation> getFloodStation(List<Integer> stations) {
-        log.info("Called Getting FloodStation Firestation Service");
+        log.info("Service Firestation : Getting floodstation firestation.");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<FloodStation> floodStations = new ArrayList<>();
         stations.forEach(station -> {
@@ -175,7 +175,7 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public void deleteFirestationByAddress(String address) {
-        log.info("Called Deleting By Address Firestation Service");
+        log.info("Service Firestation : address: "+address+" firestation deleting.");
         firestationRepository.deleteByAddress(address);
     }
 }
