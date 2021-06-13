@@ -1,5 +1,7 @@
 package fr.orionbs.SafetyNet.service;
 
+import aj.org.objectweb.asm.Type;
+import aj.org.objectweb.asm.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.orionbs.SafetyNet.model.Data;
 import fr.orionbs.SafetyNet.model.Firestation;
@@ -7,12 +9,18 @@ import fr.orionbs.SafetyNet.model.MedicalRecord;
 import fr.orionbs.SafetyNet.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Slf4j
@@ -26,18 +34,20 @@ public class JsonReader {
     private FirestationService firestationService;
     @Autowired
     private MedicalRecordService medicalRecordService;
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @PostConstruct
-    public void loadingData() {
+    public void loadingData() throws IOException {
 
         Data data = new Data();
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File file = new File("src/main/resources/static/data.json");
+        InputStream res = Data.class.getResourceAsStream("/static/data.json");
 
         try {
-            data = objectMapper.readValue(file, Data.class);
+            data = objectMapper.readValue(res, Data.class);
         } catch (IOException e) {
             log.error("Une  erreur est survenue lors de la serialisation en Objet.",e);
         }
