@@ -25,7 +25,7 @@ $ mvn clean verify
 ## Démarrage
 
 ```
-$ java -jar SafetyNet-0.0.1-SNAPSHOT.jar
+$ java -jar SafetyNetApp.jar
 ```
 
 ## Fabriqué avec
