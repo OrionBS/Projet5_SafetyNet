@@ -1,68 +1,50 @@
-# Titre du projet
+# Projet SafetyNet
 ***
 
-Une petite description du projet
+Le but de cet application est d'envoyer des informations aux systèmes de services d'urgence.
+Grâce à une API REST traitant les données des habitants et des casernes.
 
 ## Pour commencer
 
-Entrez ici les instructions pour bien débuter avec votre projet...
-
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet...
-
-- Programme 1
-- Programme 2
-- etc...
+- IntelliJ (Environnement de développement)
+- Java 11
+- MySQL
+- Maven 3.6.3
 
 ### Installation
 
 ```
+$ cd /"dossier de téléchargement"/
 $ git clone https://github.com/OrionBS/Projet5_SafetyNet
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
+$ cd /Projet5_SafetyNet
+$ mvn clean verify
 ```
-
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
 
 ## Démarrage
 
-Dites comment faire pour lancer votre projet
+```
+$ java -jar SafetyNet-0.0.1-SNAPSHOT.jar
+```
 
 ## Fabriqué avec
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
-
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
-
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
+* [IntelliJ Community](https://www.jetbrains.com/idea/download/#section=windows) - Environnement de développement
+* [Java SE JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) - JDK Java
+* [Maven 3.6.3](http://maven.apache.org/download.cgi) - Maven
 
 ## Versions
-Listez les versions ici
-_exemple :_
-**Dernière version stable :** 5.0
-**Dernière version :** 5.1
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
-_(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
+
+**Dernière version stable :** 1.0
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
-* **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
-
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
-
-_(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
+* **Orion Beauny** _alias_ [@OrionBS](https://github.com/OrionBS)
+* Tous les [contributeurs](https://github.com/OrionBS/Projet5_SafetyNet/contributors)
 
 ## License
 
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Ce projet est conçu pour répondre en tant que travail d'étudiant lors d'une soutenance.
 
 
