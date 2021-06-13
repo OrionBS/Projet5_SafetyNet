@@ -56,6 +56,23 @@ public class PersonControllerTest {
     }
 
     @Test
+    public void testNotFoundUpdatePerson() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("firstName","testDoesn'tExist");
+        listParams.add("lastName","testDoesn'tExist");
+        mockMvc.perform(put("/person")
+                .params(listParams)
+                .content(asJsonString(Person.builder().build()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void testDeletePerson() throws Exception {
         MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
         listParams.add("firstName","test");

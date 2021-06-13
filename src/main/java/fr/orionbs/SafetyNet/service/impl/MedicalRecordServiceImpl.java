@@ -1,5 +1,6 @@
 package fr.orionbs.SafetyNet.service.impl;
 
+import fr.orionbs.SafetyNet.exception.MissingParamException;
 import fr.orionbs.SafetyNet.model.MedicalRecord;
 import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.service.MedicalRecordService;
@@ -29,6 +30,9 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     public MedicalRecord updateMedicalRecord(String firstName, String lastName,MedicalRecord medicalRecord) {
         log.info("Service MedicalRecord : firstname: "+firstName+" lastname: "+lastName+" updating.");
         MedicalRecord medicalRecordSelected = medicalRecordRepository.findByFirstNameAndLastName(firstName,lastName);
+        if (medicalRecordSelected == null) {
+            throw new MissingParamException("Aucun MedicalRecord ne correspond à ce prénom: "+firstName+" et ce nom: "+lastName+".");
+        }
         medicalRecordSelected.setBirthdate(medicalRecord.getBirthdate());
         medicalRecordSelected.setMedications(medicalRecord.getMedications());
         medicalRecordSelected.setAllergies(medicalRecord.getAllergies());

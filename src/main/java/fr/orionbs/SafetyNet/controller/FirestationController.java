@@ -2,7 +2,6 @@ package fr.orionbs.SafetyNet.controller;
 
 import fr.orionbs.SafetyNet.model.Firestation;
 import fr.orionbs.SafetyNet.service.FirestationService;
-import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;

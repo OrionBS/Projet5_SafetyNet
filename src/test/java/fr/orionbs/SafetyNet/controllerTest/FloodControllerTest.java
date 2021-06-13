@@ -51,4 +51,17 @@ public class FloodControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
+    @Test
+    public void testNotFoundGetFirestationCoverage() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        mockMvc.perform(get("/flood/stations").accept(MediaType.APPLICATION_JSON)
+                .param("stations", "0"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
 }

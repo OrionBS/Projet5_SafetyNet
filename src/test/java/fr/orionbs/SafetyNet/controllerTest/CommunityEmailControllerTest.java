@@ -13,8 +13,8 @@ import org.springframework.util.MultiValueMap;
 import static fr.orionbs.SafetyNet.controllerTest.PersonControllerTest.asJsonString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -30,11 +30,25 @@ public class CommunityEmailControllerTest {
                 .content(asJsonString(person))
                 .contentType(MediaType.APPLICATION_JSON));
 
-        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
-        listParams.add("city","testCity");
+        MultiValueMap<String, String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("city", "testCity");
         mockMvc.perform(get("/communityEmail")
                 .params(listParams))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void testNotFoundGetEmailsFilterByTown() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        MultiValueMap<String, String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("city", "testCityDoesn'tExist");
+        mockMvc.perform(get("/communityEmail")
+                .params(listParams))
+                .andExpect(status().isNotFound());
     }
 }

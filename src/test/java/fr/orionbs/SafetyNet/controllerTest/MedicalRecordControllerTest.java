@@ -2,7 +2,6 @@ package fr.orionbs.SafetyNet.controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.orionbs.SafetyNet.model.MedicalRecord;
-import fr.orionbs.SafetyNet.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -67,6 +65,23 @@ public class MedicalRecordControllerTest {
                 .content(asJsonString(medicalRecord))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testNotFoundUpdateMedicalRecord() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("firstName","testDoesn'tExist");
+        listParams.add("lastName","testDoesn'tExist");
+        mockMvc.perform(put("/medicalRecord")
+                .params(listParams)
+                .content(asJsonString(MedicalRecord.builder().build()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     @Test

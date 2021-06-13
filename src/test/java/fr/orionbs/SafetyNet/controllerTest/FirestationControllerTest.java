@@ -2,7 +2,6 @@ package fr.orionbs.SafetyNet.controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.orionbs.SafetyNet.model.Firestation;
-import fr.orionbs.SafetyNet.model.MedicalRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,9 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,6 +37,7 @@ public class FirestationControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
     @Test
     public void testUpdateFirestation() throws Exception {
 
@@ -59,6 +56,20 @@ public class FirestationControllerTest {
                 .content(asJsonString(firestation))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testNotFoundUpdateFirestation() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        mockMvc.perform(put("/firestation")
+                .param("address","testAddressDoesn'tExist")
+                .content(asJsonString(Firestation.builder().build()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     @Test

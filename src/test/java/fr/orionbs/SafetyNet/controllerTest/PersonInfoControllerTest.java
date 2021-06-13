@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static fr.orionbs.SafetyNet.controllerTest.PersonControllerTest.asJsonString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -45,6 +47,22 @@ public class PersonInfoControllerTest {
         mockMvc.perform(get("/personInfo")
                 .params(listParams))
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void testNotFoundGetPersonInfo() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("firstName","testDoesn'tExist");
+        listParams.add("lastName","TestDoesn'tExist");
+        mockMvc.perform(get("/personInfo")
+                .params(listParams))
+                .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 }

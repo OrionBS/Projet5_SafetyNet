@@ -1,6 +1,5 @@
 package fr.orionbs.SafetyNet.controller;
 
-import fr.orionbs.SafetyNet.exception.MissingParamException;
 import fr.orionbs.SafetyNet.model.FirestationCoverage;
 import fr.orionbs.SafetyNet.service.FirestationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -29,4 +29,12 @@ public class FirestationCoverageControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
+
+
+    @Test
+    public void testNotFoundGetPersonsCoverageByNumber() throws Exception {
+        mockMvc.perform(get("/firestation")
+                .param("station","0"))
+                .andExpect(status().isNotFound());
+    }
 }

@@ -52,4 +52,17 @@ public class ChildAlertControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
+    @Test
+    public void testNotFoundGetChildFilterByAddress() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
+        listParams.add("address","testAddressDoesn'tExist");
+        mockMvc.perform(get("/childAlert")
+                .params(listParams))
+                .andExpect(status().isNotFound());
+    }
 }

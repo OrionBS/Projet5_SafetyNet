@@ -44,11 +44,25 @@ public class FireControllerTest {
         Firestation firestation = new Firestation(null,"testAddress3",3);
         mockMvc.perform(post("/firestation").accept(MediaType.APPLICATION_JSON).content(asJsonString(firestation)).contentType(MediaType.APPLICATION_JSON));
 
-        // WHEN THEN
+        // WHEN
+
+        //THEN
         mockMvc.perform(get("/fire").accept(MediaType.APPLICATION_JSON)
                 .param("address","testAddress3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void testNotFoundGetPersonsAndFirestationAtAddress() throws Exception {
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+        mockMvc.perform(get("/fire").accept(MediaType.APPLICATION_JSON)
+                .param("address","testAddressDoesn'tExist"))
+                .andExpect(status().isNotFound());
     }
 
 }

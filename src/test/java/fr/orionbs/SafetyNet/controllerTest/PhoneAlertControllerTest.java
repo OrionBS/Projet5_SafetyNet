@@ -30,4 +30,11 @@ public class PhoneAlertControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
+    @Test
+    public void testNotFoundGetPhoneNumberCoveredByStation() throws Exception {
+        mockMvc.perform(get("/phoneAlert")
+                .param("station","0"))
+                .andExpect(status().isNotFound());
+    }
+
 }

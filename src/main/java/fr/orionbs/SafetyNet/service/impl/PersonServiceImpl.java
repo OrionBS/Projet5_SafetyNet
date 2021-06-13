@@ -38,6 +38,9 @@ public class PersonServiceImpl implements PersonService {
     public Person updatePerson(String firstName,String lastName,Person person) {
         log.info("Service Person : firtname: "+firstName+" lastname: "+lastName+" updating.");
         Person personSelected = personRepository.findByFirstNameAndLastName(firstName, lastName);
+        if (personSelected == null) {
+            throw new MissingParamException("Aucune personne ne correspond à ce prénom: "+firstName+" et ce nom: "+lastName+".");
+        }
         personSelected.setAddress(person.getAddress());
         personSelected.setEmail(person.getEmail());
         personSelected.setPhone(person.getPhone());

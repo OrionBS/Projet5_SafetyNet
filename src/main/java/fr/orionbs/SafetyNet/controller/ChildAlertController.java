@@ -1,10 +1,8 @@
 package fr.orionbs.SafetyNet.controller;
 
-import fr.orionbs.SafetyNet.exception.MissingParamException;
 import fr.orionbs.SafetyNet.model.ChildAlert;
 import fr.orionbs.SafetyNet.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
