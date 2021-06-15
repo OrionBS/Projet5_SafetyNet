@@ -30,14 +30,14 @@ public class ChildAlertControllerTest {
     @Test
     public void testGetChildFilterByAddress() throws Exception {
         // GIVEN
-        Person person = new Person(null, "test7", "Test7", "testAddress", "testCity", 1, "testPhone", "testMail");
+        Person person = new Person(null, "test7", "Test7", "testAddress77", "testCity", 1, "testPhone", "testMail");
         mockMvc.perform(post("/person").accept(MediaType.APPLICATION_JSON)
                 .content(asJsonString(person))
                 .contentType(MediaType.APPLICATION_JSON));
         List<String> medications = new ArrayList<>();
         medications.add("medicationTest");
         List<String> allergies = new ArrayList<>();
-        medications.add("allergieTest");
+        allergies.add("allergieTest");
         MedicalRecord medicalRecord = new MedicalRecord(null,"test7","Test7","03/02/2010",medications,allergies);
         mockMvc.perform(post("/medicalRecord").accept(MediaType.APPLICATION_JSON)
                 .content(asJsonString(medicalRecord))
@@ -46,7 +46,7 @@ public class ChildAlertControllerTest {
         // WHEN
         // THEN
         MultiValueMap<String,String> listParams = new LinkedMultiValueMap<>();
-        listParams.add("address","testAddress");
+        listParams.add("address","testAddress77");
         mockMvc.perform(get("/childAlert")
                 .params(listParams))
                 .andExpect(status().isOk())
