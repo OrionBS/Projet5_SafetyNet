@@ -4,6 +4,8 @@
 Le but de cet application est d'envoyer des informations aux systèmes de services d'urgence.
 Grâce à une API REST traitant les données des habitants et des casernes.
 
+#### Lien Github : https://github.com/OrionBS/Projet5_SafetyNet
+
 ## Pour commencer
 
 ### Pré-requis
@@ -48,7 +50,7 @@ $ java -jar SafetyNetApp.jar
 * [Java SE JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) - JDK Java
 * [Maven 3.6.3](http://maven.apache.org/download.cgi) - Maven
 
-###Rapport SureFire
+### Rapport SureFire
 
 ```
 $ mvn surefire-report:report
