@@ -1,7 +1,7 @@
 package fr.orionbs.SafetyNet.service.impl;
 
 import fr.orionbs.SafetyNet.exception.MissingParamException;
-import fr.orionbs.SafetyNet.model.*;
+import fr.orionbs.SafetyNet.model.Person;
 import fr.orionbs.SafetyNet.repository.MedicalRecordRepository;
 import fr.orionbs.SafetyNet.repository.PersonRepository;
 import fr.orionbs.SafetyNet.service.PersonService;

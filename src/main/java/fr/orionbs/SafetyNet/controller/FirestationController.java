@@ -19,26 +19,30 @@ public class FirestationController {
 
     @GetMapping(path = "/firestations")
     public List<Firestation> getFirestations() {
+        log.info("Firestation GET : All");
         return firestationService.findAll();
     }
 
     @PostMapping(path = "/firestation")
     public Firestation addFirestation(@RequestBody Firestation firestation) {
+        log.info("Firestation POST : Firestation: "+firestation);
         return firestationService.addFirestation(firestation);
     }
 
     @PutMapping(path = "/firestation")
     public Firestation updateFirestation(@RequestParam String address,
                                          @RequestBody Firestation firestation) {
+        log.info("Firestation PUT : Address: "+address+" Firestation: "+firestation);
         return firestationService.updateFirestation(address,firestation);
     }
     @DeleteMapping(path = "/firestation")
     public ResponseEntity<Void> deleteFirestationByAddress(@RequestParam String address) {
         try {
+            log.info("Firestation DELETE : Address: "+address);
             firestationService.deleteFirestationByAddress(address);
             return ResponseEntity.accepted().build();
-        } catch (ConfigDataResourceNotFoundException e) {
-            log.error(e.getMessage());
+        } catch (Exception e) {
+            log.error("Firestation DELETE : "+e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }

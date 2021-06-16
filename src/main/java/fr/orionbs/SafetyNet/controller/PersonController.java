@@ -19,11 +19,13 @@ public class PersonController {
 
     @GetMapping(path = "/persons")
     public List<Person> getPersons(){
+        log.info("Person GET : All");
         return personService.findAll();
     }
 
     @PostMapping(path = "/person")
     public Person addPerson(@RequestBody Person person) {
+        log.info("Person POST : Person: "+person);
         return personService.addPerson(person);
     }
 
@@ -31,16 +33,18 @@ public class PersonController {
     public Person updatePerson(@RequestParam String firstName,
                                @RequestParam String lastName,
                                @RequestBody Person person) {
+        log.info("Person PUT : Firstname: "+firstName+" Lastname: "+lastName+" Person: "+person);
         return personService.updatePerson(firstName, lastName,person);
     }
     @DeleteMapping(path = "/person")
     public ResponseEntity<Void> deletePerson(@RequestParam String firstName,
                                                @RequestParam String lastName) {
         try {
+            log.error("Person DELETE : Firstname: "+firstName+" Lastname: "+lastName);
             personService.deletePerson(firstName, lastName);
             return ResponseEntity.accepted().build();
-        } catch (ConfigDataResourceNotFoundException e) {
-            log.error(e.getMessage());
+        } catch (Exception e) {
+            log.error("Person DELETE : "e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }

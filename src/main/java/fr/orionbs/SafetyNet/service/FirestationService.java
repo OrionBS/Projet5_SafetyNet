@@ -1,7 +1,5 @@
 package fr.orionbs.SafetyNet.service;
 
-import fr.orionbs.SafetyNet.model.*;
-
 import java.util.Collection;
 import java.util.List;
 
